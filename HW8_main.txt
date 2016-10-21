@@ -1,0 +1,8 @@
+main method is very short
+main{
+	//Algorithm Trader object
+	//ask user to enter file name
+	//object.readinputdata(csv format file name)
+	//open file to write
+	//object.run(csv format file)
+}

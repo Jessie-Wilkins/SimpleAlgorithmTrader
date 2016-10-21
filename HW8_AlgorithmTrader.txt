@@ -1,0 +1,19 @@
+
+class AlgorithmTrader{
+	
+	ReadInputData(file) {
+	
+	}
+	
+	Boolean EntryStrategy() {
+	
+	}
+	
+	Boolean EntryStrategy() {
+	
+	}
+	
+	Run() {
+	
+	}
+} 
