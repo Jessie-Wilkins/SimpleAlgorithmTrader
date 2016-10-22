@@ -1,19 +1,43 @@
 
 class AlgorithmTrader{
 	
-	ReadInputData(file) {
-	
+	ReadInputData(file, Stock s) {
+		array[] = file
+		s [].elements = array[]
+			
 	}
 	
-	Boolean EntryStrategy() {
-	
+	Boolean EntryStrategy(Stock [] s, int num) {
+		boolean b
+
+		for(i = num; i<5; i++) {
+			
+			if(s[i+1].price > s[i].price) {
+				b = true;	
+			}
+			else {
+				b = false;
+			}
+		return b;
+		}
 	}
 	
-	Boolean EntryStrategy() {
-	
+	Boolean ExitStrategy(Stock [] s, int num) {
+		boolean b
+		
+		if(s[num+1].price-s[num].price > .12(s[num].price) {
+			b = true;
+		}
+		else{
+			b = false;
+		}
+	return b;
 	}
+	
 	
 	Run() {
+		ReadInputData(file, Stock s)
+		
 	
 	}
 } 
