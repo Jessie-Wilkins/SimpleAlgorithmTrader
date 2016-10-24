@@ -6,11 +6,19 @@ public class Stock {
 	private String timeStamp;			
 	private String outputFileName;
 	private String inputFileName;
+	private String holdingStatus;
 	private double openingPrice;	//Double holding Next Price of Stock
 	private double highestPrice;
 	private double lowestPrice;
 	private double closingPrice;
 	private double volumeOfStocks;
+	private double currentValueOfTotal;
+	private double purchaseSellPrice;
+	private double purchaseCost;
+	private double percentageOfRevenue;
+	private double actualRevenue;
+	private double revenue;
+	private int heldStocks;
 	
 	/**
 	 * This sets the private variables to the default
@@ -26,6 +34,9 @@ public class Stock {
 	public void setTimeStamp(String t){
 		//Assigns the name to the private variable
 		timeStamp = t;
+	}
+	public void setHoldingStatus(String hs) {
+		holdingStatus = hs;
 	}
 	public void setOpeningPrice(double o) {
 		openingPrice = o;
@@ -43,13 +54,39 @@ public class Stock {
 		volumeOfStocks = v;
 	}
 	
+	public void SetCurrentValueOfTotal(double t) {
+		currentValueOfTotal = t;
+	}
+	
+	public void SetPurchaseSellPrice (double psp) {
+		purchaseSellPrice = psp;
+		
+	}
+	
+	public void SetPurchaseCost (double pc) {
+		purchaseCost = pc;
+	}
+	
+	public void SetPercentageOfRevenue(double pr) {
+		percentageOfRevenue = pr;
+	}
+	
+	public void SetActualRevenue(double ar) {
+		actualRevenue = ar;
+	}
+	
+	public void SetRevenue(double r) {
+		revenue = r;
+	}
+	
 	public void SetOutputFileName(String s) {
 		outputFileName = s;
 	}
 	public void SetInputFileName(String s) {
-		File file = new File("");
-		
 		inputFileName = s;
+	}
+	public void SetHeldStocks(int n) {
+		heldStocks = n;
 	}
 	/**
 	 * This returns the company name 
@@ -58,6 +95,9 @@ public class Stock {
 	public String getTimeStamp() {
 		//returns the name of the company
 		return timeStamp;
+	}
+	public String getHoldingStatus() {
+		return holdingStatus;
 	}
 	public double getOpeningPrice() {
 		return openingPrice;
@@ -75,19 +115,46 @@ public class Stock {
 		return volumeOfStocks;
 	}
 	
+	public double getCurrentValueOfTotal() {
+		return currentValueOfTotal;
+	}
+	
+	public double GetPurchaseSellPrice () {
+		return purchaseSellPrice;
+		
+	}
+	
+	public double GetPurchaseCost () {
+		return purchaseCost;
+	}
+	
+	public double GetPercentageOfRevenue() {
+		return percentageOfRevenue;
+	}
+	
+	public double GetActualRevenue() {
+		return actualRevenue;
+	}
+	
+	public double getRevenue() {
+		return revenue;
+	}
+	
 	public String getOutputFileName() {
 		return outputFileName;
 	}
 	public String getInputFileName() {
 		return inputFileName;
 	}
+	public int getHeldStocks() {
+		return heldStocks;
+	}
 	/**
 	 * This changes next price according the percentage by a negative or positive number
 	 */
-	
-	public void printHeaders(){
+	public void printHeaders(PrintWriter f){
 		//Outputs the header names
-		System.out.println("STOCK\tSYMBOL\tYESTERDAY'S PRICE\tTODAY'S PRICE\tPRICE MOVEMENT\tCHANGE PERCENT");
+		f.println("TIMESTAMP,CURRENT_PRICE,SHARES,P/L_PERCENT,PROFIT/LOSS,REALIZED_PROFIT/LOSS,HOLD/NONE,PURCHASE/SELL_PRICE,PURCHASE_COST");
 	}
 	
 	/**
@@ -98,52 +165,9 @@ public class Stock {
 	 * @param nP
 	 * @param rn
 	 */
-	public void printResults(String cN, String cS, double cP, double nP, double rn) {
+	public void printResults() {
 		//Print results to screen for user to see the Stock Prices Fluctuation
-		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
+		System.out.printf("%s,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%.2f,%.2f\r\n", this.getTimeStamp(), this.getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
 	}
-	public double FindAverage(double [][] p) {
-		double sum = 0;
-		double average;
-		
-		for(int i=0; i<p.length; i++) {
-			sum+=p[0][i];
-		}
-		average = sum/p.length;
-		
-		return average;
-	}
-	
-	public String FindHighest(double [] p, String[] s) {
-		String highest = new String();
-		int index = 0;
-		double value = 0;
-		
-		for(int i = 0; i<p.length; i++) {
-			if(p[i] > value) {
-				value = p[i];
-				index = i;
-			}
-		}
-		highest = s[index];
-		return highest;
-	}
-	
-	public String FindLowest(double [] p, String[] s) {
-		String lowest = new String();
-		int index = 0;
-		double value = p[0];
-		
-		for(int i = 0; i<p.length; i++) {
-			if(p[i] < value) {
-				value = p[i];
-				index = i;
-			}
-		}
-		lowest = s[index];
-		return lowest;
-	}
-	
-	
 	
 }//Closes public Stock Class

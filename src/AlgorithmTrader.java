@@ -46,7 +46,7 @@ public class AlgorithmTrader {
 
 		for(int i = num; i<num+5; i++) {
 			
-			if(s.get(i+1).getClosingPrice() > s.get(i).getClosingPrice()){
+			if(s.get(i+1).getClosingPrice() > s.get(i).getClosingPrice() && s.get(i).getHeldStocks() == 0){
 				b = true;	
 			}
 			else {
@@ -60,7 +60,7 @@ public class AlgorithmTrader {
 	public boolean ExitStrategy(ArrayList<Stock> s, int num) {
 		boolean b;
 		
-		if(s.get(num+1).getClosingPrice()-s.get(num).getClosingPrice() > .12*s.get(num).getClosingPrice()){
+		if(s.get(num+1).getClosingPrice()-s.get(num).getClosingPrice() > .12*s.get(num).getClosingPrice() && s.get(num).getHeldStocks() != 0){
 			b = true;
 		}
 		else{
@@ -78,19 +78,33 @@ public class AlgorithmTrader {
 		boolean entryBool;
 		boolean exitBool;
 		
+		stockFileData.get(0).printHeaders(f);
+		
 		for(int i =0; i<stockFileData.size(); i=i+5) {
 			entryBool= EntryStrategy(stockFileData, i);
 			exitBool = ExitStrategy(stockFileData, i);
-			double heldStock;
-			double revenue;
 			
 			if(entryBool) {
-				heldStock = 10000*stockFileData.get(i+4).getClosingPrice();
+				stockFileData.get(i).SetCurrentValueOfTotal(10000*stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).SetHeldStocks(10000);
+				stockFileData.get(i).SetPurchaseSellPrice(stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).SetPurchaseCost(stockFileData.get(i).getCurrentValueOfTotal());
+				stockFileData.get(i).setHoldingStatus("HOLD");
 			}
 			
+			
 			if(exitBool) {
-				revenue = 10000*stockFileData.get(i+4).getClosingPrice();
+				stockFileData.get(i).SetActualRevenue(stockFileData.get(i).getCurrentValueOfTotal() - stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).setHoldingStatus("NONE");
+				stockFileData.get(i).SetPurchaseSellPrice(stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).SetHeldStocks(0);
 			}
+			
+			if(stockFileData.get(i).getHoldingStatus().equals("HOLD")) {
+				stockFileData.get(i).SetRevenue(stockFileData.get(i).getCurrentValueOfTotal() - stockFileData.get(i).getClosingPrice());
+			}
+			stockFileData.get(i).printResults();
+
 			
 		}
 		
