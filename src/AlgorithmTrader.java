@@ -23,8 +23,8 @@ public class AlgorithmTrader {
 			array[i] = fRead.nextLine();
 			i++;
 		}
-		for(i=0; i<array.length; i++) {
-			String [] stockRecords = array[i].split("[,]");
+		for(i=0; i<array.length-1; i++) {
+			String [] stockRecords = array[i+1].split("[,]");
 			
 			Stock s = new Stock();			
 			a.add(s);
@@ -43,16 +43,22 @@ public class AlgorithmTrader {
 	
 	public boolean EntryStrategy(ArrayList<Stock> s, int num) {
 		boolean b = false;
+		
+		int j=0;
 
 		for(int i = num; i<num+5; i++) {
 			
 			if(s.get(i+1).getClosingPrice() > s.get(i).getClosingPrice() && s.get(i).getHeldStocks() == 0){
-				b = true;	
-			}
-			else {
-				b = false;
+				j++;
 			}
 		}
+		if(j==5) {
+			b =true;
+		}
+		else {
+				b = false;
+		}
+
 		return b;
 	
 	}
@@ -60,14 +66,14 @@ public class AlgorithmTrader {
 	public boolean ExitStrategy(ArrayList<Stock> s, int num) {
 		boolean b;
 		
-		if(s.get(num+1).getClosingPrice()-s.get(num).getClosingPrice() > .12*s.get(num).getClosingPrice() && s.get(num).getHeldStocks() != 0){
+		if(s.get(num+1).getClosingPrice()-s.get(num).getClosingPrice() > .0012*s.get(num).getClosingPrice() || s.get(num+1).getClosingPrice()-s.get(num).getClosingPrice() < -.0012*s.get(num).getClosingPrice() && s.get(num).getHeldStocks() != 0){
 			b = true;
 		}
 		else{
 			b = false;
 		}
 		return b;
-	}
+}
 	
 	public void Run(String fName, PrintWriter f) {
 		
@@ -94,14 +100,14 @@ public class AlgorithmTrader {
 			
 			
 			if(exitBool) {
-				stockFileData.get(i).SetActualRevenue(stockFileData.get(i).getCurrentValueOfTotal() - stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).SetActualRevenue(10000*stockFileData.get(i).getClosingPrice()-stockFileData.get(i).getCurrentValueOfTotal());
 				stockFileData.get(i).setHoldingStatus("NONE");
 				stockFileData.get(i).SetPurchaseSellPrice(stockFileData.get(i).getClosingPrice());
 				stockFileData.get(i).SetHeldStocks(0);
 			}
 			
 			if(stockFileData.get(i).getHoldingStatus().equals("HOLD")) {
-				stockFileData.get(i).SetRevenue(stockFileData.get(i).getCurrentValueOfTotal() - stockFileData.get(i).getClosingPrice());
+				stockFileData.get(i).SetRevenue(10000*stockFileData.get(i).getClosingPrice()-stockFileData.get(i).getCurrentValueOfTotal());
 			}
 			stockFileData.get(i).printResults();
 

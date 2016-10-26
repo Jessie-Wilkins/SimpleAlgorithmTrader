@@ -1,6 +1,6 @@
 /* ========================================================================== */
 
-/*	PROGRAM List of Stocks
+/*	PROGRAM Simple Algorithm Trader
     AUTHOR: Yuri Khechoyan & Jessie Wilkins
     COURSE NUMBER: CIS 210
     COURSE SECTION NUMBER: 01
@@ -86,9 +86,23 @@ ASSUMPTIONS
 //**********************
 //*	START OF PROGRAM   *	
 //**********************
+
+import java.io.*;
+
 public class SimpleAlgorithmTradingPlatform {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
+		String fName = "MSFT.csv";
+		
+		FileWriter append = new FileWriter("TradingSummary.csv", true);
+		
+		PrintWriter f = new PrintWriter(append);
+		
+		
+		AlgorithmTrader trader = new AlgorithmTrader();
+		
+		trader.Run(fName, f);
 
 	}
 
