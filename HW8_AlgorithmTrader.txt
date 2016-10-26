@@ -4,6 +4,7 @@ class AlgorithmTrader{
 	ReadInputData(file, Stock s) {
 		array[] = file
 		s [].elements = array[]
+		return s;
 			
 	}
 	
@@ -36,7 +37,7 @@ class AlgorithmTrader{
 	
 	
 	Run() {
-		ReadInputData(file, Stock s)
+		s[] = ReadInputData(file, Stock s)
 		
 	
 	}

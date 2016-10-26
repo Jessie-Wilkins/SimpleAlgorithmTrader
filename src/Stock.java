@@ -24,6 +24,22 @@ public class Stock {
 	 * This sets the private variables to the default
 	 */
 	public Stock() {
+		timeStamp = "12:00";
+		outputFileName = "outputName";
+		inputFileName = "inputName";
+		holdingStatus = "Null";
+		openingPrice = 0;
+		highestPrice = 0;
+		lowestPrice = 0;
+		closingPrice = 0;
+		volumeOfStocks = 0;
+		currentValueOfTotal = 0;
+		purchaseSellPrice = 0;
+		purchaseCost = 0;
+		percentageOfRevenue = 0;
+		actualRevenue = 0;
+		revenue = 0;
+		heldStocks = 0;
 		
 	}//Closes Stock Method
 	
@@ -167,7 +183,7 @@ public class Stock {
 	 */
 	public void printResults() {
 		//Print results to screen for user to see the Stock Prices Fluctuation
-		System.out.printf("%s,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%.2f,%.2f\r\n", this.getTimeStamp(), this.getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
+		System.out.printf("%s,%.2f,%d,%.2f,%.2f,%.2f,%s,%.2f,%.2f\r\n", this.getTimeStamp(), this.getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
 	}
 	
 }//Closes public Stock Class
