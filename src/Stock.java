@@ -6,19 +6,11 @@ public class Stock {
 	private String timeStamp;			
 	private String outputFileName;
 	private String inputFileName;
-	private String holdingStatus;
 	private double openingPrice;	//Double holding Next Price of Stock
 	private double highestPrice;
 	private double lowestPrice;
 	private double closingPrice;
 	private double volumeOfStocks;
-	private double currentValueOfTotal;
-	private double purchaseSellPrice;
-	private double purchaseCost;
-	private double percentageOfRevenue;
-	private double actualRevenue;
-	private double revenue;
-	private int heldStocks;
 	
 	/**
 	 * This sets the private variables to the default
@@ -27,19 +19,11 @@ public class Stock {
 		timeStamp = "12:00";
 		outputFileName = "outputName";
 		inputFileName = "inputName";
-		holdingStatus = "Null";
 		openingPrice = 0;
 		highestPrice = 0;
 		lowestPrice = 0;
 		closingPrice = 0;
 		volumeOfStocks = 0;
-		currentValueOfTotal = 0;
-		purchaseSellPrice = 0;
-		purchaseCost = 0;
-		percentageOfRevenue = 0;
-		actualRevenue = 0;
-		revenue = 0;
-		heldStocks = 0;
 		
 	}//Closes Stock Method
 	
@@ -50,9 +34,6 @@ public class Stock {
 	public void setTimeStamp(String t){
 		//Assigns the name to the private variable
 		timeStamp = t;
-	}
-	public void setHoldingStatus(String hs) {
-		holdingStatus = hs;
 	}
 	public void setOpeningPrice(double o) {
 		openingPrice = o;
@@ -70,40 +51,13 @@ public class Stock {
 		volumeOfStocks = v;
 	}
 	
-	public void SetCurrentValueOfTotal(double t) {
-		currentValueOfTotal = t;
-	}
-	
-	public void SetPurchaseSellPrice (double psp) {
-		purchaseSellPrice = psp;
-		
-	}
-	
-	public void SetPurchaseCost (double pc) {
-		purchaseCost = pc;
-	}
-	
-	public void SetPercentageOfRevenue(double pr) {
-		percentageOfRevenue = pr;
-	}
-	
-	public void SetActualRevenue(double ar) {
-		actualRevenue = ar;
-	}
-	
-	public void SetRevenue(double r) {
-		revenue = r;
-	}
-	
 	public void SetOutputFileName(String s) {
 		outputFileName = s;
 	}
 	public void SetInputFileName(String s) {
 		inputFileName = s;
 	}
-	public void SetHeldStocks(int n) {
-		heldStocks = n;
-	}
+	
 	/**
 	 * This returns the company name 
 	 * @return
@@ -111,9 +65,6 @@ public class Stock {
 	public String getTimeStamp() {
 		//returns the name of the company
 		return timeStamp;
-	}
-	public String getHoldingStatus() {
-		return holdingStatus;
 	}
 	public double getOpeningPrice() {
 		return openingPrice;
@@ -131,40 +82,13 @@ public class Stock {
 		return volumeOfStocks;
 	}
 	
-	public double getCurrentValueOfTotal() {
-		return currentValueOfTotal;
-	}
-	
-	public double GetPurchaseSellPrice () {
-		return purchaseSellPrice;
-		
-	}
-	
-	public double GetPurchaseCost () {
-		return purchaseCost;
-	}
-	
-	public double GetPercentageOfRevenue() {
-		return percentageOfRevenue;
-	}
-	
-	public double GetActualRevenue() {
-		return actualRevenue;
-	}
-	
-	public double getRevenue() {
-		return revenue;
-	}
-	
 	public String getOutputFileName() {
 		return outputFileName;
 	}
 	public String getInputFileName() {
 		return inputFileName;
 	}
-	public int getHeldStocks() {
-		return heldStocks;
-	}
+	
 	/**
 	 * This changes next price according the percentage by a negative or positive number
 	 */
@@ -181,9 +105,5 @@ public class Stock {
 	 * @param nP
 	 * @param rn
 	 */
-	public void printResults() {
-		//Print results to screen for user to see the Stock Prices Fluctuation
-		System.out.printf("%s,%.2f,%d,%.2f,%.2f,%.2f,%s,%.2f,%.2f\r\n", this.getTimeStamp(), this.getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
-	}
 	
 }//Closes public Stock Class

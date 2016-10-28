@@ -95,14 +95,17 @@ public class SimpleAlgorithmTradingPlatform {
 		
 		String fName = "MSFT.csv";
 		
-		FileWriter append = new FileWriter("TradingSummary.csv", true);
+		//FileWriter append = new FileWriter("TradingSummary.csv", true);
 		
-		PrintWriter f = new PrintWriter(append);
-		
+		PrintWriter f = new PrintWriter("TradingSummary.csv");
+
+		f.flush();
 		
 		AlgorithmTrader trader = new AlgorithmTrader();
 		
 		trader.Run(fName, f);
+		
+		f.close();
 
 	}
 
