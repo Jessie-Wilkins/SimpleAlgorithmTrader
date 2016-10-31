@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.*;
+import java.util.ArrayList;						//Imports ArrayList class so that array lists may be used
+import java.util.Scanner;						//Imports Scanner class so that input may be accepted
+import java.io.*;								//Imports all of the io classes so the output file classes may be used
 
 public class AlgorithmTrader {
 	//Variables
@@ -167,7 +167,7 @@ public class AlgorithmTrader {
 	 */
 	public void printResults(ArrayList<Stock> s, int i, PrintWriter f) {
 		//Print results to screen for user to see the Stock Prices Fluctuation
-		f.printf("%s,%f,%d,%f,%f,%f,%s,%f,%f\r\n", s.get(i).getTimeStamp(), s.get(i).getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
+		f.printf("%s,%f,%d,%f,$%f,$%f,%s,%f,$%f\r\n", s.get(i).getTimeStamp(), s.get(i).getClosingPrice(), this.getHeldStocks(), this.GetPercentageOfRevenue(), this.getRevenue(), this.GetActualRevenue(), this.getHoldingStatus(), this.GetPurchaseSellPrice(), this.GetPurchaseCost());
 	}
 	
 	/**

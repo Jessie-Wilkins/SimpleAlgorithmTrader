@@ -87,26 +87,29 @@ ASSUMPTIONS
 //*	START OF PROGRAM   *	
 //**********************
 
-import java.io.*;
+import java.io.*;	//Imports all of the io classes so the output file classes may be used
+import java.util.Scanner;
 
 public class SimpleAlgorithmTradingPlatform {
 
 	public static void main(String[] args) throws IOException {
-		
-		String fName = "MSFT.csv";
-		
-		//FileWriter append = new FileWriter("TradingSummary.csv", true);
-		
+		//Declares the scanner input object for the input file name
+		Scanner input = new Scanner(System.in);
+		//Sets the string variable to the user input file name
+		String fName = input.nextLine();
+		//Declares and initializes to the output file the PrintWriter object.
+		//Used to print to the given file.
 		PrintWriter f = new PrintWriter("TradingSummary.csv");
-
+		//Deletes the content before printing this sessions content
 		f.flush();
-		
+		//Declares a new AlgorithmTrader object to be used to execute
+		//the method run()
 		AlgorithmTrader trader = new AlgorithmTrader();
-		
+		//Executes the program
 		trader.Run(fName, f);
-		
+		//Closes the file object and the input object
 		f.close();
-
+		input.close();
 	}
 
 }
