@@ -12,6 +12,8 @@ public class AlgorithmTrader {
 	private double revenue;						//Revenue that is possible if the user were to sell
 	private int heldStocks;						//The number of held stocks
 	private String holdingStatus;				//The status that indicates whether or not stocks are being held
+	final private int BUY_SIGNAL_THREASHOLD = 5;
+	final private double SELL_SIGNAL_THREASHOLD = 0.0012; 
 	
 	/*
 	 * Constructor that sets the variables to default values
@@ -293,8 +295,8 @@ public class AlgorithmTrader {
 			//the percentage loss is equal to or less than .0012 or the number is
 			// equal to the array list of the Stock -2 and the held stocks is equal
 			//to 10000, it sets b equal to true
-			if(((s.get(num).getClosingPrice() - this.GetPurchaseSellPrice())/this.GetPurchaseSellPrice() >=.0012
-					|| ((s.get(num).getClosingPrice()-this.GetPurchaseSellPrice())/this.GetPurchaseSellPrice()) <= -.0012 
+			if(((s.get(num).getClosingPrice() - this.GetPurchaseSellPrice())/this.GetPurchaseSellPrice() >=SELL_SIGNAL_THREASHOLD
+					|| ((s.get(num).getClosingPrice()-this.GetPurchaseSellPrice())/this.GetPurchaseSellPrice()) <= -SELL_SIGNAL_THREASHOLD
 					|| num==s.size()-2)
 					&& getHeldStocks() == 10000 ){
 				b = true;	
@@ -355,7 +357,7 @@ public class AlgorithmTrader {
 			}
 			
 			//If j is equal to 5
-			if(j==5) {
+			if(j==BUY_SIGNAL_THREASHOLD) {
 				//Set currentValueOfTotal to the closing price times 10000
 				SetCurrentValueOfTotal(10000*stockFileData.get(i).getClosingPrice());
 				//Sets heldStocks to 10000
