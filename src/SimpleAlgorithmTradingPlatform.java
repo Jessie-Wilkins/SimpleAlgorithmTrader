@@ -87,8 +87,8 @@ ASSUMPTIONS
 //*	START OF PROGRAM   *	
 //**********************
 
-import java.io.*;	//Imports all of the io classes so the output file classes may be used
-import java.util.Scanner;
+import java.io.*;			//Imports all of the I/O classes so the output file classes may be used
+import java.util.Scanner;	//Imports the Scanner Utility Object
 
 public class SimpleAlgorithmTradingPlatform {
 
