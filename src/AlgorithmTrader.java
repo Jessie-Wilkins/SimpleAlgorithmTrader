@@ -3,17 +3,17 @@ import java.util.Scanner;						//Imports Scanner class so that input may be acce
 import java.io.*;								//Imports all of the IO classes so the output file classes may be used
 
 public class AlgorithmTrader {
-	//Variables
-	private double currentValueOfTotal;			//Value of a the total value of the held stocks
-	private double purchaseSellPrice;			//Value of the stocks sold or bought
-	private double purchaseCost;				//Cost of each stock that was bought
-	private double percentageOfRevenue;			//Percentage increase from the revenue
-	private double actualRevenue;				//Revenue that the user gains after selling the stocks
-	private double revenue;						//Revenue that is possible if the user were to sell
-	private int heldStocks;						//The number of held stocks
-	private String holdingStatus;				//The status that indicates whether or not stocks are being held
-	final private int BUY_SIGNAL_THREASHOLD = 4;
-	final private double SELL_SIGNAL_THREASHOLD = 0.0012; 
+	//Variables and constants
+	private double currentValueOfTotal;						//Value of a the total value of the held stocks
+	private double purchaseSellPrice;						//Value of the stocks sold or bought
+	private double purchaseCost;							//Cost of each stock that was bought
+	private double percentageOfRevenue;						//Percentage increase from the revenue
+	private double actualRevenue;							//Revenue that the user gains after selling the stocks
+	private double revenue;									//Revenue that is possible if the user were to sell
+	private int heldStocks;									//The number of held stocks
+	private String holdingStatus;							//The status that indicates whether or not stocks are being held
+	final private int BUY_SIGNAL_THREASHOLD = 4;			//Constant that holds the number of increases for the entry strategy
+	final private double SELL_SIGNAL_THREASHOLD = 0.0012; 	//Constant that holds the percentage of profit or loss for the exit strategy
 	/*
 	 * Constructor that sets the variables to default values
 	 */
@@ -203,7 +203,6 @@ public class AlgorithmTrader {
 			fCount.nextLine();
 			//Increments the count variable
 			count++;
-			System.out.println(count);
 		}
 		
 		//Declares a string array that will be used to accept the input
@@ -240,14 +239,14 @@ public class AlgorithmTrader {
 			a.get(i-1).setLowestPrice(Double.parseDouble(stockRecords[3]));
 			a.get(i-1).setOpeningPrice(Double.parseDouble(stockRecords[4]));
 			a.get(i-1).setVolumeOfStocks(Integer.parseInt(stockRecords[5]));
-		}
+		}//Closes for loop on lime 223
 		//Closes the Scanner objects 
 		fCount.close();
 		fRead.close();
 		
 		//Returns the stock array list
 		return a;
-	}
+	}//Closes ReadInputData ArrayList on line 180
 	
 	/**
 	 * Determines when to buy stock - sets default to false
@@ -271,11 +270,11 @@ public class AlgorithmTrader {
 			else {
 				b = false;
 			}
-		}
+		}//Closes if statement on line 263
 		//Returns b
 		return b;
 	
-	}
+	}//Closes EntryStrategy boolean on line 257
 	
 	/**
 	 * Determines when to sell the held stocks
@@ -304,7 +303,7 @@ public class AlgorithmTrader {
 			else{
 				b = false;
 			}
-		}
+		}//Closes if statement on line 291
 		//Returns b
 		return b;
 	}//Closes ExitStrategy Boolean
@@ -377,6 +376,7 @@ public class AlgorithmTrader {
 				SetPercentageOfRevenue((stockFileData.get(i).getClosingPrice()-GetPurchaseSellPrice())/GetPurchaseSellPrice());
 				//Sets the actual revenue to the closing price to the original purchase price
 				SetActualRevenue(10000*(stockFileData.get(i).getClosingPrice()-GetPurchaseSellPrice())+this.GetActualRevenue());
+				SetRevenue(0);
 				//Sets the holding status to "NONE"
 				setHoldingStatus("NONE");
 				//Sets the purchaseSellPrice to the closing price
@@ -392,7 +392,7 @@ public class AlgorithmTrader {
 			//and sets the percentage of the gain or loss to closing price - the purchase price
 			//divided by the purchase price
 			else if(i>0 && getHoldingStatus().equals("HOLD")) {
-				SetRevenue(10000*(stockFileData.get(i).getClosingPrice()-GetPurchaseSellPrice())+this.GetActualRevenue());
+				SetRevenue(10000*(stockFileData.get(i).getClosingPrice()-GetPurchaseSellPrice()));
 				SetPercentageOfRevenue((stockFileData.get(i).getClosingPrice()-GetPurchaseSellPrice())/GetPurchaseSellPrice());
 				
 			}//Closes else if on line 393

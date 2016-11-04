@@ -15,7 +15,7 @@ public class Stock {
 	 * This sets the private variables to the default
 	 */
 	public Stock() {
-		timeStamp = "12:00";
+		timeStamp = "00:00";
 		outputFileName = "outputName";
 		inputFileName = "inputName";
 		openingPrice = 0;
@@ -31,7 +31,6 @@ public class Stock {
 	 * @param n
 	 */
 	public void setTimeStamp(String t){
-		//Assigns the name to the private variable
 		timeStamp = t;
 	}
 	/**
@@ -89,7 +88,6 @@ public class Stock {
 	 * @return
 	 */
 	public String getTimeStamp() {
-		//returns the name of the company
 		return timeStamp;
 	}
 	/**
@@ -143,20 +141,13 @@ public class Stock {
 	}
 	
 	/**
-	 * This changes next price according the percentage by a negative or positive number
+	 * This prints the Headers
+	 * @param f
 	 */
 	public void printHeaders(PrintWriter f){
-		//Outputs the header names
 		f.println("TIMESTAMP,CURRENT_PRICE,SHARES,P/L_PERCENT,PROFIT/LOSS,REALIZED_PROFIT/LOSS,HOLD/NONE,PURCHASE/SELL_PRICE,PURCHASE_COST");
 	}
 	
-	/**
-	 * This prints the Headers & stock information
-	 * @param cN
-	 * @param cS
-	 * @param cP
-	 * @param nP
-	 * @param rn
-	 */
+	
 	
 }//Closes public Stock Class

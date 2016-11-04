@@ -91,8 +91,14 @@ import java.io.*;			//Imports all of the I/O classes so the output file classes 
 import java.util.Scanner;	//Imports the Scanner Utility Object
 
 public class SimpleAlgorithmTradingPlatform {
-
+	/**
+	 * The main method for the SimpleAlgorithmTradingPlatform
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
+		//Prints out the command to put in the input file name
+		System.out.print("Please type in the name of the csv file (this includes the .csv portion of the name): ");
 		//Declares the scanner input object for the input file name
 		Scanner input = new Scanner(System.in);
 		//Sets the string variable to the user input file name
@@ -110,6 +116,6 @@ public class SimpleAlgorithmTradingPlatform {
 		//Closes the file object and the input object
 		f.close();
 		input.close();
-	}
+	}//Closes Main method
 
-}
+}//Closes SimpleAlgorithmTradingPlatform Class
